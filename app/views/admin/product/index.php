@@ -54,13 +54,25 @@
                                 <img src="<?php echo BASE_URL ?>/public/admin/images/<?php echo $prod['pro_avatar'] ?>" width="100px" height="100px">
                             </td>
                             <td><?php echo $prod['c_name']?></td>
-                            <td>
+                            <!-- <td>
                                 <?php if($prod['pro_hot'] == 0 ){?>
                                     <span class="btn btn-secondary">Không</span>
                                 <?php }else{ ?>
                                     <span class="btn btn-primary">Có</span>
                                 <?php } ?>
+                            </td> -->
+                            <td>
+                                <?php if($prod['pro_hot'] == 0 ){?>
+                                    <form action="<?php echo BASE_URL ?>/product/hot_confirm/<?php echo $prod['id'] ?>" method="POST">
+                                        <input type="submit"  value="Không" class="btn btn-danger">
+                                    </form> 
+                                    <?php } else{ ?>
+                                    <form action="<?php echo BASE_URL ?>/product/no_hot_confirm/<?php echo $prod['id'] ?>" method="POST">
+                                        <input type="submit" value="Có" class="btn btn-primary">
+                                    </form>   
+                                    <?php } ?>
                             </td>
+                            
                             <td>
                                 <a href="<?php echo BASE_URL ?>/product/editproduct/<?php echo $prod["id"] ?>" class="btn btn-primary">Sửa</a>
                                 <a href="<?php echo BASE_URL ?>/product/deleteproduct/<?php echo $prod["id"] ?>" class="btn btn-danger">Xóa</a>

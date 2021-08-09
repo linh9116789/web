@@ -144,5 +144,31 @@
                 header("Location:".BASE_URL."/post/index");
             }
         }
+
+        public function hot_confirm($id){
+            $postmodel = $this->load->model("postmodel");
+            $table = "posts";
+            $cond = "$table.p_id = '$id'";
+            $data = array(
+                'p_hot' => 1
+            );
+            $result = $postmodel->update_hot($table,$data, $cond);
+            if($result == 1){
+                header("Location:".BASE_URL."/post/index");
+            }
+        }
+
+        public function no_hot_confirm($id){
+            $postmodel = $this->load->model("postmodel");
+            $table = "posts";
+            $cond = "$table.p_id = '$id'";
+            $data = array(
+                'p_hot' => 0
+            );
+            $result = $postmodel->update_hot($table,$data, $cond);
+            if($result == 1){
+                header("Location:".BASE_URL."/post/index");
+            }
+        }
     }
 ?>

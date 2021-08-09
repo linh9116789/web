@@ -7,6 +7,10 @@
         /**
          * query Admin
          */
+        // public function Allcategory($table){
+        //     $sql = "SELECT COUNT(*) as sosanpham FROM $table ";
+        //     return $this->db->select($sql);
+        // }
         public function list_category($table){
             $sql = "SELECT * FROM $table ORDER BY $table.c_id DESC";
             return $this->db->select($sql);

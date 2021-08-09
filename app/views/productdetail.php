@@ -89,15 +89,31 @@
                      <div class="rating-price">
                         <div class="pro_rating">
                            <?php
-                              $ageDetail = 0;
-                              $ageDetail = round($pro_total_start / $pro_rating_start,2);
+                           if($pro_rating_start){
+                                 $ageDetail = 0;
+                                 $ageDetail = round($pro_total_start / $pro_rating_start,2);
+                              ?>
+                              <?php for($i = 1; $i<=5;$i++){?>
+                                 <a href="#"><i class="fa fa-star <?php echo($i<=$ageDetail)?'active':'' ?>"></i></a>
+                              <?php 
+                              }
+                           }else{
                            ?>
                            <?php for($i = 1; $i<=5;$i++){?>
-                              <a href="#"><i class="fa fa-star <?php echo($i<=$ageDetail)?'active':'' ?>"></i></a>
-                           <?php }?>
+                                 <a href="#"><i class="fa fa-star"></i></a>
+                              <?php }?>
+                           <?php } ?>
                         </div>
                         <div class="price-boxes">
-                           <span class="new-price"><?php echo number_format($product['pro_price'],0,',','.').'đ' ?></span>
+                        <?php
+                           $price_sale = ((100- $product['pro_sale'])*$product['pro_price'] / 100);
+                        ?>
+                        <?php if($product['pro_sale']){ ?>
+                           <span class="old-price"><?php echo number_format($product['pro_price'],0,',','.').'đ' ?></span>
+                           <span class="new-price" style="color: red;"><?php echo number_format($price_sale,0,',','.').'đ' ?></span>
+                        <?php }else{?>
+                           <span class="new-price" style="color: red;"><?php echo number_format($product['pro_price'],0,',','.').'đ' ?></span>
+                           <?php }?>
                         </div>
                      </div>
                      <div class="product-desc">
@@ -156,10 +172,15 @@
                               <div class="component_rating_content" style="display:flex; align-items: center;border: 1px solid #dedede;margin: 0 -100px;">
                                     <div class="rating-item" style="width: 15%;position: relative;">
                                        <span class="fa fa-star" style="font-size: 100px;color:#ff9705;display:block;text-align:center;margin:0 auto;"></span>
-                                       <b style="position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);color: white;font-size: 23px;"><?php echo $ageDetail ?></b>
+                                       <b style="position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);color: white;font-size: 23px;">
+                                       <?php if($pro_rating_start){ echo $ageDetail;?>
+                                          <?php }else{ echo '0';?><?php }?>
+                                       </b>
                                     </div>
                                     <div class="list_rating" style="width: 65%;padding:15px">
-                                    <?php foreach($arrayRating as $key =>$arrRating){ 
+                                    <?php 
+                                    if($pro_rating_start){
+                                    foreach($arrayRating as $key =>$arrRating){ 
                                         $itemAge = 0;
                                         $itemAge = round(($arrRating['total']/$pro_rating_start)*100,0);
                                     ?>
@@ -176,7 +197,23 @@
                                              <a href=""><?php echo $arrRating['total'] ?> Đánh giá(<?php echo $itemAge ?>%)</a>
                                           </div>
                                        </div>
-                                    <?php } ?>
+                                    <?php } }else{?>
+                                       <?php for($i = 1; $i<=5 ; $i++) {?>
+                                          <div class="item_rating" style="display:flex;align-items:center">
+                                             <div style="width: 10%;font-size: 15px;">
+                                                <?php echo $i ?><span class="fa fa-star"></span>
+                                             </div>
+                                             <div  style="width: 70%;margin:0 8px">
+                                                <span style="width:100%; height:6px; display:block; border: 1px solid #dedede; border-radius:5px; background-color:#dedede">
+                                                <b style="width:30%;background-color:#ff9705;display:block;height:100%;border-radius:5px"></b>
+                                             </span>
+                                             </div>
+                                             <div  style="width: 20%;font-size: 15px;">
+                                                <a href="">0Đánh(0%)</a>
+                                             </div>
+                                          </div>
+                                       <?php }?>
+                                       <?php }?>
                                     </div>
                                     <div style="width: 20%;">
                                        <a href="" class="js_rating_action" style="text-decoration: none;width: 200px;background: #288ad6;padding: 5px;color: white;border-radius: 5px;">Gửi đánh giá của bạn</a>

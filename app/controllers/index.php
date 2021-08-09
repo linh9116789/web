@@ -17,19 +17,22 @@
             $artisan = "artisans";
             $product = "products";
             $post = "posts";
+            $slide = "slides";
             $cond = "$product.pro_hot = 1";
             $categorymodel = $this->load->model('categorymodel');
             $productmodel = $this->load->model('productmodel');
             $artisanmodel = $this->load->model('artisanmodel');
             $postmodel = $this->load->model('postmodel');
+            $slidemodel = $this->load->model('slidemodel');
             $data['artisanFE'] = $artisanmodel->artisanFE($artisan);
             $data['categoryFE'] = $categorymodel->categoryFE($category);
             $data['producHot'] = $productmodel->producthot($product, $cond);
             $data['productNew'] = $productmodel->productnew($product);
             $data['postHot'] = $postmodel->posthot($post);
+            $data['slideFE'] = $slidemodel->slideFE($slide);
             $this->load->view('header');
             $this->load->view('menu',$data);
-            $this->load->view('slide');
+            $this->load->view('slide',$data);
             $this->load->view('home',$data);
             $this->load->view('footer');
         }

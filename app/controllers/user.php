@@ -73,16 +73,14 @@
                 }
         }
 
-        public function register($id){
-            $product = "products";
+        public function register(){
+            
             $category = "categories";
             
-            
-            $productmodel = $this->load->model('productmodel');
             $categorymodel = $this->load->model('categorymodel');
             
             $data['categoryFE'] = $categorymodel->categoryFE($category);
-            $data['productFE']  = $productmodel->productFE($category, $product, $id);
+            
             $this->load->view('header');
             $this->load->view('menu',$data);
             $this->load->view('register');

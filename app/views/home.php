@@ -157,13 +157,13 @@
                <div class="col-md-4 col-sm-4 col-xs-12">
                   <div class="single-post">
                      <div class="post-thumb">
-                        <a href="#">
+                        <a href="<?php echo BASE_URL ?>/tintuc/chitietbaiviet/<?php echo $post['p_id'] ?>">
                         <img src="<?php echo BASE_URL ?>/public/admin/images/<?php echo $post['p_avatar']?>" alt="" />
                         </a>
                      </div>
                      <div class="post-thumb-info">
                         <div class="post-time">
-                           <a href="#"><?php echo $post['p_name'] ?></a>
+                           <a href="<?php echo BASE_URL ?>/tintuc/chitietbaiviet/<?php echo $post['p_id'] ?>"><?php echo $post['p_name'] ?></a>
                         </div>
                         <div class="postexcerpt">
                            <p> <?php echo substr($post['p_title'],0,500).'...' ?></p>

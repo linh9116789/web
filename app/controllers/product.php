@@ -169,5 +169,31 @@
                 header("Location:".BASE_URL."/product/index?msg=".urldecode(serialize($message)));
             }
         }
+
+        public function hot_confirm($id){
+            $productmodel = $this->load->model("productmodel");
+            $table ="products";
+            $cond = "products.id = '$id'";
+            $data = array(
+                'pro_hot' => 1
+            );
+            $result = $productmodel->update_hot($table,$data, $cond);
+            if($result == 1){
+                header("Location:".BASE_URL."/product/index");
+            }
+        }
+
+        public function no_hot_confirm($id){
+            $productmodel = $this->load->model("productmodel");
+            $table ="products";
+            $cond = "products.id = '$id'";
+            $data = array(
+                'pro_hot' => 0
+            );
+            $result = $productmodel->update_hot($table,$data, $cond);
+            if($result == 1){
+                header("Location:".BASE_URL."/product/index");
+            }
+        }
     }
 ?>

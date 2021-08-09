@@ -50,12 +50,23 @@
                             </td>
                             <!-- <td><?php echo $post['p_description']?></td> -->
                             <td><?php echo $post['a_name']?></td>
-                            <td>
+                            <!-- <td>
                                 <?php if($post['p_hot'] == 0 ){?>
                                     <span class="btn btn-secondary">Không</span>
                                 <?php }else{ ?>
                                     <span class="btn btn-primary">Có</span>
                                 <?php } ?>
+                            </td> -->
+                            <td>
+                                <?php if($post['p_hot'] == 0 ){?>
+                                    <form action="<?php echo BASE_URL ?>/post/hot_confirm/<?php echo $post['p_id'] ?>" method="POST">
+                                        <input type="submit"  value="Không" class="btn btn-danger">
+                                    </form> 
+                                    <?php } else{ ?>
+                                    <form action="<?php echo BASE_URL ?>/post/no_hot_confirm/<?php echo $post['p_id'] ?>" method="POST">
+                                        <input type="submit" value="Có" class="btn btn-primary">
+                                    </form>   
+                                    <?php } ?>
                             </td>
                             <td>
                                 <a href="<?php echo BASE_URL ?>/post/editpost/<?php echo $post["p_id"] ?>" class="btn btn-primary">Sửa</a>

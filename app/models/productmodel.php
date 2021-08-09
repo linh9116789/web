@@ -30,6 +30,10 @@
             return $this->db->delete($table, $cond);
         }
 
+        public function update_hot($table,$data, $cond){
+            return $this->db->update($table, $data, $cond);
+        }
+
         /**
          * query Font End
          */

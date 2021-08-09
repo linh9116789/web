@@ -14,6 +14,17 @@
             $this->load->view('admin/header');
             $table = "categories";
             $categorymodel = $this->load->model("categorymodel");
+            //phan trang
+            // $data['Allcategory'] = $categorymodel->Allcategory($table);
+            // foreach($data['Allcategory'] as $allcate){
+            //     $totalRecords = $allcate['sosanpham'];
+            // }
+            // $item_page = 2; //số sản phẩm trên 1 trang
+            // $current_page=1;//Số trang
+            // $offset = ($current_page-1)*$item_page;
+            // $cond = "LIMIT $item_page OFFSET $offset ";
+            // $totalPages = ceil($totalRecords/$item_page);
+
             $data['category'] = $categorymodel->list_category($table);
             $this->load->view('admin/category/index',$data);
             $this->load->view('admin/footer');
